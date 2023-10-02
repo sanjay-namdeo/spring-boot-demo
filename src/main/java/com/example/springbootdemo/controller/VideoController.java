@@ -5,6 +5,8 @@ import com.example.springbootdemo.service.VideoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,5 +22,10 @@ public class VideoController {
     @GetMapping(path = "/get-videos")
     public ResponseEntity<List<Video>> getVideos() {
         return new ResponseEntity<>(videoService.getVideos(), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/create-video")
+    public ResponseEntity<Video> createVideo(@RequestBody Video video) {
+        return new ResponseEntity<>(videoService.create(video), HttpStatus.OK);
     }
 }
